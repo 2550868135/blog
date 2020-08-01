@@ -16,11 +16,15 @@
 <body>
 <nav class="navbar navbar-default nav-rejust">
     <ul class="layui-nav" lay-filter="">
-        <li class="layui-nav-item"><a href="{% url 'blog' %}">博客</a></li>
+        <li style="display:inline-block;" class="home">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="font-size:20px;" href="{% url 'blog' %}">ZYLH</a>
+            </div>
+        </li>
+        <li class="layui-nav-item first-li"><a href="{% url 'blog' %}">博客</a></li>
         <li class="layui-nav-item"><a href="">项目</a></li>
         <li class="layui-nav-item"><a href="">资料</a></li>
         <li class="layui-nav-item"><a href="">后台管理</a></li>
-        <li class="layui-nav-item"><a href="">社区</a></li>
         <li class="search-li">
             <form class="search-form">
                 {% csrf_token %}
