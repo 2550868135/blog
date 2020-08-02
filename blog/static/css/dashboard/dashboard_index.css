@@ -1,0 +1,16 @@
+.nav-side{
+    margin-left: 12%;
+    text-align: center;
+}
+
+.auth-manage{
+    position: relative;
+    margin-left: 30%;
+    margin-top:55px;
+    width: 60%;
+    height: 80%;
+}
+
+.panel-body{
+    padding: 0;
+}

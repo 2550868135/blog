@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %}
+    个人设置
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="/static/css/user/settings.css/?v=2">
+    <link rel="stylesheet" href="/static/css/layui.css/">
+    <link rel="stylesheet" href="/static/css/layer.css/">
+{% endblock %}
+{% block js %}
+    <script src="/static/js/user/settings.js/"></script>
+    <script src="/static/js/user/settings.js/?v=2"></script>
+    <script src="/static/js/layui.all.js"></script>
+{% endblock %}
+{% block content %}
+    <div class="panel panel-default auth-data">
+        <!-- Default panel contents -->
+        <div class="panel-heading" style="font-size: 25px">个人资料</div>
+        <div class="panel-body" style="position: relative">
+            <img src="{{ user.setting.head_img|default:"http://qefd8neb2.bkt.clouddn.com/default.jpg" }}"
+                 alt="..." class="img-circle"
+                 style="width: 80px;height: 80px;border: 1px solid gray; display: inline-block;margin-left: 20px">
+            <p style="display: inline-block;left: 40%;position: absolute!important;font-size: 150%">
+                <span style="color:#cccccc;">用户: {{ user.username }}</span></p>
+        </div>
+        <a id="file-btn" style="margin-left: 45px;color: blue;position: relative" href="">
+            {% csrf_token %}
+            <input data-user="{{ user.id }}" data-url="{% url 'settings' %}" type="file" id="head-btn" name="head"
+                   style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;opacity: 0" accept="image/*">修改头像
+        </a>
+        <hr/>
+
+        <div class="user-info change" style="margin-right: 5%;display: none">
+            <form class="layui-form layui-form-pane" action="{% url 'update' %}" method="post">
+            {% csrf_token %}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">昵称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="nickname" class="layui-input" value="{{ user.setting.nickname }}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">年龄</label>
+                    <div class="layui-input-block">
+                        <input type="number" name="age" class="layui-input" value="{{ user.setting.age }}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-block">
+                        {% if user.setting.gender == '男' %}
+                            <input type="radio" name="gender" value="男" title="男" checked>
+                            <input type="radio" name="gender" value="女" title="女" >
+                        {% else %}
+                            <input type="radio" name="gender" value="男" title="男">
+                            <input type="radio" name="gender" value="女" title="女" checked>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">电话</label>
+                    <div class="layui-input-block">
+                        <input type="tel" name="phone" class="layui-input" value="{{ user.setting.phone }}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">邮箱</label>
+                    <div class="layui-input-block">
+                        <input type="email" name="email" class="layui-input" value="{{ user.setting.email }}">
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">个性签名</label>
+                    <div class="layui-input-block">
+                        <textarea name="content" class="layui-textarea"
+                                  style="resize: none;">{{ user.setting.content }}</textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">立即修改</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="user-info static">
+            <div style="position: relative">昵称: {{ user.setting.nick_name }}<span style="position: absolute;right: 3%"><a class="update-settings" style="color: blue;">修改信息</a></span></div>
+            <p>年龄: {{ user.setting.age }}</p>
+            <p>性别: {{ user.setting.gender }}</p>
+            <p>电话: {{ user.setting.phone }}</p>
+            <p>邮箱: {{ user.setting.email }}</p>
+            <p>个性签名: {{ user.setting.content }}</p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,5 +1,3 @@
-.player{
-    position: relative;
-    margin:0 auto;
-    top: 0px;
+.gray{
+    background: #cccccc;
 }

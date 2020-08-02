@@ -1,0 +1,17 @@
+.auth-data{
+    position: relative;
+    margin:0 auto;
+    top: 15%;
+    width: 60%;
+}
+
+.user-info{
+    margin-left: 5%;
+    line-height: 30px;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+

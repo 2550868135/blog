@@ -18,6 +18,8 @@ class BlogView(View):
 class LoginView(View):
     TEMPLATE = 'blog/login.html'
     def get(self,request):
+        if request.user.is_authenticated:
+            return redirect(reverse('blog'))
         next = request.GET.get('next','')
         data = {'next':next}
         return render(request,self.TEMPLATE,data)
@@ -48,3 +50,11 @@ class LoginView(View):
             return redirect(next)
         else:
             return redirect(reverse('blog'))
+
+
+class LogoutView(View):
+
+    def get(self,request):
+        logout(request)
+        return redirect(reverse('login'))
+
