@@ -17,6 +17,8 @@ class SettingView(View):
         user = request.user
         data = {}
         data['user'] = user
+        code = request.GET.get('code')
+        data['code'] = code
         return render(request,self.TEMPLATE,data)
 
     def post(self,request):
@@ -51,4 +53,4 @@ class UpdateInfo(View):
         setting = Setting.objects.get(id=user.setting.id)
         setting.updateInfo(nickname,age,gender,phone,email,content)
         setting.save()
-        return redirect('settings')
+        return redirect('{}?code=0'.format(reverse('settings')))

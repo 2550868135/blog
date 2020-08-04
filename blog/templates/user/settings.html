@@ -3,13 +3,10 @@
     个人设置
 {% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="/static/css/user/settings.css/?v=2">
-    <link rel="stylesheet" href="/static/css/layui.css/">
-    <link rel="stylesheet" href="/static/css/layer.css/">
+    <link rel="stylesheet" href="/static/css/user/settings.css">
 {% endblock %}
 {% block js %}
-    <script src="/static/js/user/settings.js/"></script>
-    <script src="/static/js/user/settings.js/?v=2"></script>
+    <script src="/static/js/user/settings.js/?v=3"></script>
     <script src="/static/js/layui.all.js"></script>
 {% endblock %}
 {% block content %}
@@ -31,12 +28,12 @@
         <hr/>
 
         <div class="user-info change" style="margin-right: 5%;display: none">
-            <form class="layui-form layui-form-pane" action="{% url 'update' %}" method="post">
+            <form class="layui-form layui-form-pane setting-form" action="{% url 'update' %}" method="post">
             {% csrf_token %}
                 <div class="layui-form-item">
                     <label class="layui-form-label">昵称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="nickname" class="layui-input" value="{{ user.setting.nickname }}">
+                        <input type="text" name="nickname" class="layui-input" value="{{ user.setting.nick_name }}">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -79,12 +76,11 @@
                 <div class="layui-form-item">
                     <div class="layui-input-block">
                         <button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">立即修改</button>
-                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        <button type="reset" class="layui-btn layui-btn-primary reset-btn">重置</button>
                     </div>
                 </div>
             </form>
         </div>
-
         <div class="user-info static">
             <div style="position: relative">昵称: {{ user.setting.nick_name }}<span style="position: absolute;right: 3%"><a class="update-settings" style="color: blue;">修改信息</a></span></div>
             <p>年龄: {{ user.setting.age }}</p>
@@ -94,4 +90,18 @@
             <p>个性签名: {{ user.setting.content }}</p>
         </div>
     </div>
+    {% if code == '0' %}
+    <script>
+        swal({
+                'title':'修改成功',
+               'showCancelButton': false,
+                'showConfirmButton': false,
+                'type': "success",
+                'timer':1000
+            },function () {
+            window.location.href = '/blog/user/settings/';
+        });
+
+    </script>
+    {% endif %}
 {% endblock %}

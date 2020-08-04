@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+    轮播图片管理
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="/static/css/dashboard/picture_setting.css">
+{% endblock %}
+{% block js %}
+    <script src="/static/js/dashboard/picture_setting.js/?v=1"></script>
+{% endblock %}
+{% block content %}
+    {% csrf_token %}
+    {% include 'dashboard/dashboard_base.html' %}
+    <div class="panel panel-default pic-manage" data-url="{% url 'pic_setting' %}" data-remove="{% url 'remove_picture' %}">
+        <div class="panel-heading">
+            <h1 class="panel-title" style="font-size: 25px;">轮播图片管理</h1>
+        </div>
+        <div class="panel-body" style="height: 100%;overflow: auto">
+            {% for pic in pics %}
+                    <div class="col-sm-6 col-md-4 count-image">
+                        <div class="thumbnail">
+                            <img class='insert-image' src="{{ pic.image }}" alt='未选择图片' style="height:250px;">
+                            <div class="caption">
+                                <p style="position: relative;width: 100%">
+                                    <a href="javascript:void (0);" class="btn btn-primary" role="button" style="margin: 0 3%">选择图片</a>
+                                    <input type="file" class="select-pic-btn" style="position: absolute;opacity: 0;left: 0px;top: 0px;width: 50%;" accept="image/*" onchange="upload(this)">
+                                    <a href="javascript:void (0);" class="btn btn-primary delete-btn" role="button" style="margin: 0 3%;position: absolute;right: 0;">删除</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+                    <div class="col-sm-6 col-md-4 add-item">
+                        <div class="thumbnail" style="border-style:none; ">
+                            <div class="caption add-pic" style="text-align:center">
+                               <svg t="1596443899183" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6105" width="80%" height="80%"><path d="M512 972.8a460.8 460.8 0 1 0 0-921.6 460.8 460.8 0 0 0 0 921.6z m0 51.2C229.2224 1024 0 794.7776 0 512S229.2224 0 512 0s512 229.2224 512 512-229.2224 512-512 512z m-232.704-486.4h465.408a25.6 25.6 0 1 0 0-51.2h-465.408a25.6 25.6 0 0 0 0 51.2zM486.4 279.296v465.408a25.6 25.6 0 1 0 51.2 0v-465.408a25.6 25.6 0 1 0-51.2 0z" p-id="6106" fill="#8a8a8a"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+{% endblock %}

@@ -3,21 +3,13 @@
     后台管理
 {% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="/static/css/dashboard/dashboard_index.css">
+    <link rel="stylesheet" href="/static/css/dashboard/dashboard_index.css/?v=5">
 {% endblock %}
 {% block js %}
-    <script src="/static/js/dashboard/dashboard_index.js"></script>
+    <script src="/static/js/dashboard/dashboard_index.js/"></script>
 {% endblock %}
 {% block content %}
-    <div class="list-group col-sm-2 col-sm-offset-1 hidden-xs nav-side">
-        <a href="#" class="list-group-item disabled">
-            后台管理面板
-        </a>
-        <a href="#" class="list-group-item avail-item active">用户</a>
-        <a href="#" class="list-group-item avail-item">Morbi leo risus</a>
-        <a href="#" class="list-group-item avail-item">Porta ac consectetur ac</a>
-        <a href="#" class="list-group-item avail-item">Vestibulum at eros</a>
-    </div>
+    {% include 'dashboard/dashboard_base.html' %}
 
     <div class="panel panel-default auth-manage">
         <div class="panel-heading">
@@ -32,20 +24,44 @@
                     <th>电话</th>
                     <th>性别</th>
                     <th>超级管理员</th>
+                    <th>状态</th>
                     <th>操作</th>
                 </tr>
                 {% for user in users %}
                     <tr>
                         <td>{{ user.username }}</td>
-                        <td>{{ user.setting.nickname }}</td>
+                        <td>{{ user.setting.nick_name }}</td>
                         <td>{{ user.setting.email }}</td>
                         <td>{{ user.setting.phone }}</td>
                         <td>{{ user.setting.gender }}</td>
-                        <td>
+                        <td class="is_super">
                             {% if user.is_superuser %}
                                 是
                             {% else %}
                                 否
+                            {% endif %}
+                        </td>
+                        <td style="position: relative;">
+                            {% if user.id != current_user.id %}
+                                {% if user.is_active == 1 %}
+                                    <form class="layui-form layui-form-pane check-form" id="update-status" data-url="{% url 'change_status' %}" style="display: inline-block;position: absolute;top: 0px;left: 0px">
+                                        <input class="layui-form layui-form-pane update-status" type="checkbox" name="zzz" lay-skin="switch" lay-text="可用|禁用" checked>
+                                    </form>
+                                {% else %}
+                                    <form class="layui-form layui-form-pane check-form" id="update-status" data-url="{% url 'change_status' %}" style="display: inline-block;position: absolute;top: 0px;left: 0px">
+                                        <input class="layui-form layui-form-pane" type="checkbox" name="zzz" lay-skin="switch" lay-text="可用|禁用">
+                                    </form>
+                                {% endif %}
+                            {% else %}
+                                {% if user.is_active == 1 %}
+                                    <form class="layui-form layui-form-pane check-form" id="update-status" data-url="{% url 'change_status' %}" style="display: inline-block;position: absolute;top: 0px;left: 0px">
+                                        <input class="layui-form layui-form-pane update-status" type="checkbox" name="zzz" lay-skin="switch" value="1" lay-text="可用|禁用" checked disabled>
+                                    </form>
+                                {% else %}
+                                    <form class="layui-form layui-form-pane check-form" id="update-status" data-url="{% url 'change_status' %}" style="display: inline-block;position: absolute;top: 0px;left: 0px">
+                                        <input class="layui-form layui-form-pane" type="checkbox" name="zzz" lay-skin="switch" lay-text="可用|禁用" value="1" disabled>
+                                    </form>
+                                {% endif %}
                             {% endif %}
                         </td>
                         <td></td>
