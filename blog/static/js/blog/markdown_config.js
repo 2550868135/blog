@@ -2,7 +2,7 @@
     width: "100%",
     height: 720,
     syncScrolling: "single",
-    path: "/static/lib/editormd/editor.md/lib/",
+    path: "/static/lib/editormd/editor/lib/",
 
     // 设置主体颜色
     //theme : "dark",
