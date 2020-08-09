@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0bb55aa4-127c-4e3c-88bb-20ad4d097e5e" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--follow-tags" />
+        <option name="title" value="Current Branch" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1fUDvYodLQFFH1sZKJkxTptm2Va" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\django_project\myblog\blog\blog\static\js" />
+      <recent name="D:\django_project\myblog\blog\blog\static\css\user" />
+      <recent name="D:\django_project\myblog\blog\blog\templates\blog" />
+      <recent name="D:\django_project\myblog\blog\blog\static\lib\editormd" />
+      <recent name="D:\django_project\myblog\blog\blog\static\lib\editormd\editor.md-master" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\django_project\myblog\blog\blog\static\lib\editormd\editor.md-master\plugins" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="blog" type="Python.DjangoServer" factoryName="Django server">
+      <module name="blog" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0bb55aa4-127c-4e3c-88bb-20ad4d097e5e" name="Default Changelist" comment="" />
+      <created>1596264008958</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596264008958</updated>
+      <workItem from="1596264021891" duration="15208000" />
+      <workItem from="1596285016927" duration="179000" />
+      <workItem from="1596286896074" duration="11598000" />
+      <workItem from="1596325406052" duration="1089000" />
+      <workItem from="1596339360351" duration="23119000" />
+      <workItem from="1596371248448" duration="8205000" />
+      <workItem from="1596413467867" duration="50000" />
+      <workItem from="1596435002951" duration="20117000" />
+      <workItem from="1596498282834" duration="29000" />
+      <workItem from="1596521305749" duration="14060000" />
+      <workItem from="1596535721885" duration="655000" />
+      <workItem from="1596585374499" duration="107000" />
+      <workItem from="1596593355948" duration="4394000" />
+      <workItem from="1596610648496" duration="14370000" />
+      <workItem from="1596672697619" duration="84000" />
+      <workItem from="1596695466865" duration="19349000" />
+      <workItem from="1596722897629" duration="70000" />
+      <workItem from="1596759252883" duration="44000" />
+      <workItem from="1596770876218" duration="1895000" />
+      <workItem from="1596784160567" duration="8746000" />
+      <workItem from="1596813326255" duration="4226000" />
+      <workItem from="1596845307954" duration="34000" />
+      <workItem from="1596869921404" duration="5467000" />
+      <workItem from="1596875414350" duration="147000" />
+      <workItem from="1596900595415" duration="2865000" />
+      <workItem from="1596938836185" duration="3484000" />
+      <workItem from="1596955734474" duration="10066000" />
+      <workItem from="1596965849752" duration="2299000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="71" key="#Notifications" timestamp="1596967136700">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1596967136700" />
+    <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596374605611">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1596374605611" />
+    <state x="372" y="2" key="CommitChangelistDialog2" timestamp="1596536401403">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="372" y="2" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1596536401403" />
+    <state x="558" y="249" key="FileChooserDialogImpl" timestamp="1596875559759">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="558" y="249" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1596875559759" />
+    <state x="270" y="54" key="SettingsEditor" timestamp="1596352250498">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="270" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1596352250498" />
+    <state x="290" y="142" key="Vcs.Push.Dialog.v2" timestamp="1596967073163">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="290" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1596967073163" />
+    <state x="449" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1596965864422">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="449" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1596965864422" />
+    <state x="555" y="203" key="git4idea.merge.GitMergeDialog" timestamp="1596967223174">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="555" y="203" key="git4idea.merge.GitMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1596967223174" />
+    <state x="582" y="312" key="git4idea.ui.GitStashDialog" timestamp="1596967229793">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="582" y="312" key="git4idea.ui.GitStashDialog/0.0.1536.824@0.0.1536.824" timestamp="1596967229793" />
+    <state x="578" y="253" key="git4idea.ui.GitTagDialog" timestamp="1596967173184">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="578" y="253" key="git4idea.ui.GitTagDialog/0.0.1536.824@0.0.1536.824" timestamp="1596967173184" />
+    <state x="431" y="146" width="672" height="678" key="search.everywhere.popup" timestamp="1596939500073">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="146" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1596939500073" />
+  </component>
+</project>
