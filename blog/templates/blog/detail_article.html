@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block title %}{{ article.title }}{% endblock %}
+{% block css %}
+    <link href="/static/lib/editormd/editor/css/editormd.preview.min.css" rel="stylesheet"/>
+    <link href="/static/css/blog/detail_article.css" rel="stylesheet"/>
+    <style>
+        .prettyprint {
+            background: #282c34 !important;
+        }
+
+        code span {
+            color: #abb2bf !important;
+        }
+
+        li.L1, li.L3, li.L5, li.L7, li.L9 {
+            background: none !important;
+        }
+
+        body {
+            background: #e8e8e8;
+        }
+
+        .container {
+            width: 70%;
+            margin: 0 auto;
+            margin-top: 55px;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+        a.user{
+            color: #00a8c6;
+        }
+        span#time:hover{
+            cursor: pointer;
+        }
+        p.type{
+            color: #9d9d9d;
+        }
+
+    </style>
+{% endblock %}
+{% block js %}
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/static/lib/editormd/editor/lib/marked.min.js"></script>
+    <script type="text/javascript" src="/static/lib/editormd/editor/lib/prettify.min.js"></script>
+    <script type="text/javascript" src="/static/lib/editormd/editor/lib/raphael.min.js"></script>
+    <script type="text/javascript" src="/static/lib/editormd/editor/lib/underscore.min.js"></script>
+    <script type="text/javascript" src="/static/lib/editormd/editor/lib/sequence-diagram.min.js"></script>
+    <script type="text/javascript" src="/static/lib/editormd/editor/lib/flowchart.min.js"></script>
+    <script type="text/javascript" src="/static/lib/editormd/editor/lib/jquery.flowchart.min.js"></script>
+    <script type="text/javascript" src="/static/lib/editormd/editor/editormd.min.js"></script>
+    <script type="text/javascript" src="/static/js/blog/detail_article.js"></script>
+{% endblock %}
+{% block content %}
+    <div class="container" data-articleId="{{ article.article_id }}">
+        <div style="padding: 20px;background: white;">
+            <h1>{{ article.title }}</h1>
+            <div class="panel panel-default">
+                <div class="panel-footer clearfix">
+                    作者: <a class="user" href="#">{{ article.user.username }}</a>
+                    <span class="pull-right" id="time" data-create="{{ article.create_time }}" data-update="{{ article.last_update }}">{{ article.create_time }}</span>
+                    <p class="type">分类: <a href="#" class="btn btn-default" style="padding: 0;color: #9d9d9d">{{ article.tag.type }}</a></p>
+                </div>
+            </div>
+        </div>
+        <div id="editormd-view">
+            <hr/>
+            <textarea style="display:none;">{{ article.real_content }}</textarea>
+        </div>
+        <div class="comment-group">
+            <h3>评论</h3>
+            <ul class="comment-list-group">
+                {% for comment in comments %}
+                    <li>
+                        <div class="avatar-group">
+                            <img src="{{ comment.author.setting.head_img }}" alt="">
+                        </div>
+                        <div class="comment-content">
+                            <p class="author-info">
+                                <span>{{ comment.author.username }}</span>
+                                <span>{{ comment.create_time }}</span>
+                            </p>
+                            <p class="comment-txt">
+                                {{ comment.content }}
+                            </p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="add-comment-group">
+            <h3>发表评论</h3>
+            <textarea name="comment" id="comment-area"  style="resize: none;width: 100%;height: 80px;"></textarea>
+            <div class="comment-btn-group">
+                <button class="btn btn-primary" id="comment-btn">发表评论</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            var EditormdView = editormd.markdownToHTML("editormd-view", {
+                htmlDecode: "style,script,iframe",  // you can filter tags decode
+                emoji: true,
+                taskList: true,
+                tex: true,  // 默认不解析
+                flowChart: true,  // 默认不解析
+                sequenceDiagram: true  // 默认不解析
+            });
+        });
+    </script>
+{% endblock %}
+

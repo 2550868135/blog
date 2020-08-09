@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}
+    文章管理
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="/static/css/dashboard/dashboard_article.css">
+{% endblock %}
+{% block js %}
+{% endblock %}
+{% block content %}
+    {% csrf_token %}
+    {% include 'dashboard/dashboard_base.html' %}
+    <div class="panel panel-default article-manager">
+            <div class="panel-heading"><h1 style="font-size: 25px">文章管理</h1></div>
+            <div class="panel-body">
+                <div class="article-list">
+                    <div class="list-group article-list">
+                        {% if articles %}
+                            {% for article in articles %}
+                                <div class="list-group-item">
+                                    <a href="{% url 'detail' %}?id={{ article.article_id }}"><h3 class="list-group-item-heading article-title">{{ article.title }}</h3></a>
+                                    <div class="list-group-item-text article-info">
+                                        <span>类型:{{ article.tag.type }}</span>
+                                        <span class="author">作者:{{ user.username }}</span>
+                                        <span class="create-time">{{ article.create_time }}</span>
+                                        <span class="status">
+                                            状态:{% if article.status %}公开{% else %}隐藏{% endif %}
+                                        </span>
+                                        <a href="{% url 'delete_dashborad_blog' %}?article_id={{ article.article_id }}" class="change-tag" id="delete">删除</a>
+                                        {% if article.status == 1 %}
+                                        <a href="{% url 'change_blog_status' %}?article_id={{ article.article_id }}" class="change-tag" id="change">隐藏</a>
+                                        {% else %}
+                                        <a href="{% url 'change_blog_status' %}?article_id={{ article.article_id }}" class="change-tag" id="change">公开</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if error %}
+        <script>
+            swal({
+                        'title': errors,
+                        'button': '确定',
+                        'type': "error"
+                        },function () {
+                window.location.href = '/blog/dashboard/article/';
+            });
+        </script>
+    {% elif refresh == 1 %}
+        <script>
+            window.location.href = '/blog/dashboard/article/';
+        </script>
+    {% endif %}
+{% endblock %}

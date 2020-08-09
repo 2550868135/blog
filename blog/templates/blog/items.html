@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block title %}
+    项目
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="/static/css/blog/items.css">
+{% endblock %}
+{% block js %}
+    <script src="/static/js/blog/items.js"></script>
+    <script>
+        window.onload = function () {
+            zlqiniu.setUp({
+                'domain': 'http://qeopwdtd2.bkt.clouddn.com/',     //域名
+                'browse_btn': 'upload-btn',                //上传文件摁纽id
+                'uptoken_url': '/blog/uptoken/',                //uptoken的url,即定义返回uptoken的视图
+                'success': function (up, file, info) {       //成功后的回调函数
+                    //console.log(file);                    //file中包含了这个文件的全部信息
+                    var processBox = document.getElementById("process-box");
+                    var file_url = file.name;
+                    var FileInput = document.getElementById('file-url');
+                    FileInput.value = file_url;
+                    processBox.innerText = '上传完成'
+                },
+                'progress': function (up, file) {
+                    var processBox = document.getElementById("process-box");
+                    processBox.style.width = file.percent + '%';
+                    processBox.innerText = file.percent + '%';
+                }
+
+            })
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    <div class="main_content">
+        <div class="top-box">
+            <span class="item-list">项目列表</span>
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#item-dialog">添加项目</button>
+        </div>
+        <div class="item-container">
+            <div class="item-body">
+                {% for item in items %}
+                    <div class="panel panel-success single-item">
+                        <div class="panel-heading item-head"><span class="title">{{ item.name }}</span><a
+                                href="{{ item.file_url }}" class="btn btn-info download-item">下载项目</a></div>
+                        <div class="panel-body item-introduce">
+                            <p style="font-size: larger">项目描述:</p>
+                            <p>{{ item.introduce }}</p>
+                            <div class="footer">
+                                <span class="author-name">作者: {{ item.user.username }}</span>
+                                <span class="date">{{ item.create_time }}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="item-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">添加项目</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">项目名称:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="name" placeholder="项目名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">项目介绍:</label>
+                            <div class="col-sm-10">
+                                <textarea name="introduce" id="" cols="30" rows="10"
+                                          style="width: 100%;height: 100%;resize: none;" placeholder="项目介绍"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">项目文件:</label>
+                            <div class="col-sm-10">
+                                <button class="btn btn-info" id="upload-btn">上传文件</button>
+                            </div>
+                            <input type="hidden" id="file-url" name="file_url" value="">
+                        </div>
+                        <div class="form-group" id="process-group" style="display: none">
+                            <label for="" class="col-sm-2 control-label">上传进度:</label>
+                            <div class="col-sm-10 process-div">
+                                <div class="progress">
+                                    <div class="progress-bar" id="process-box" role="progressbar" aria-valuenow="0"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 0%;">
+                                        0%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="save-btn">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

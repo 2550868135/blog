@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}
+    项目管理
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="/static/css/dashboard/dashboard_item.css">
+{% endblock %}
+{% block js %}
+    <script src="/static/js/dashboard/dashboard_item.js"></script>
+{% endblock %}
+
+{% block content %}
+    {% include 'dashboard/dashboard_base.html' %}
+    <div class="panel panel-default item-manage">
+        <div class="panel-heading">
+            <h1 class="panel-title" style="font-size: 25px;">项目管理</h1>
+        </div>
+        <div class="panel-body table-responsive">
+            <table class="table table-bordered table-responsive table-hover">
+                <tr>
+                    <th>项目编号</th>
+                    <th>项目名称</th>
+                    <th>项目介绍</th>
+                    <th>文件下载地址</th>
+                    <th>操作</th>
+                </tr>
+                {% for item in items %}
+                    <tr data-itemId="{{ item.item_id }}">
+                        <td>{{ item.item_id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td class="item-introduce-td">{{ item.introduce }}</td>
+                        <td><a class="file_url" href="{{ item.file_url }}">{{ item.file_url }}</a></td>
+                        <td><a href="" class="btn btn-xs btn-danger delete-btn">删除</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

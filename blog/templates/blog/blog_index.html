@@ -6,19 +6,40 @@
     {#    <link rel="stylesheet" href="/static/css/layui.css" media="all">#}
     {#    <link rel="stylesheet" href="/static/css/layer.css" media="all">#}
     <link rel="stylesheet" href="/static/css/blog/blog_index.css/?v=2">
-    <script src="/static/js/blog/blog_index.js"></script>
 {% endblock %}
 {% block js %}
+    <script src="/static/js/blog/blog_index.js"></script>
 {% endblock %}
 {% block content %}
     <ul class="nav nav-pills nav-stacked navbar-fixed-top col-sm-2 col-sm-offset-1 hidden-xs"
         style="margin-top:55px;margin-left: 12%;">
-        <li role="presentation" class="gray side-nav active"><a href="#">全部</a></li>
-        <li role="presentation" class="gray side-nav"><a href="#">python</a></li>
-        <li role="presentation" class="gray side-nav"><a href="#">Java</a></li>
+        {% if current_tag == 'all' %}
+        <li role="presentation" class="gray side-nav active"><a href="{% url 'blog' 'all' %}">全部</a></li>
+        {% else %}
+        <li role="presentation" class="gray side-nav"><a href="{% url 'blog' 'all' %}">全部</a></li>
+        {% endif %}
+        {% for tag in all_tags %}
+                {% if tag.name == current_tag %}
+                <li role="presentation" class="gray side-nav active">
+                {% else %}
+                <li role="presentation" class="gray side-nav">
+                {% endif %}
+                    <a class="tags" href="{% url 'blog' tag.name %}">{{ tag.type }} <span class="badge count">
+                        {% if tag.type in params %}
+                            {% for type,count in params.items %}
+                                {% if tag.type == type %}
+                                    {{ count }}
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            0
+                        {% endif %}
+                    </span></a>
+                </li>
+        {% endfor %}
     </ul>
-    <div id="myCarousel" data-ride="carousel" data-interval="3000" class="carousel slide hidden-xs"
-         style="position: relative;width:40%; height: 50%; margin: 56px auto;">
+    <div id="Carousel-container" style="position: relative;width:50%; height: 40%;display: inline-block;margin-top: 55px">
+    <div id="myCarousel" data-ride="carousel" data-interval="3000" class="carousel slide" style="height: 100%;width: 100%">
         <!-- 轮播（Carousel）指标 -->
         <ol class="carousel-indicators">
             {% for pic in pics %}
@@ -35,7 +56,7 @@
             {% for pic in pics %}
                 {% if forloop.first %}
                     <div class="item active">
-                        <img src="{{ pic.image }}" class="img-responsive" alt="slide-{{ forloop.counter }}" style="max-height: 378px;max-width: 578px;">
+                        <img src="{{ pic.image }}" class="img-responsive" alt="slide-{{ forloop.counter }}" style="max-height: 380px;max-width: 950px;">
                     </div>
                 {% else %}
                     <div class="item">
@@ -54,4 +75,28 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+    </div>
+    <div class="article-show" data-page="1" data-total-page="{{ total_page }}">
+    {% for article in articles %}
+        <a href="{% url 'detail' %}?id={{ article.article_id }}">
+        <div class="panel panel-info single-part">
+            <div class="panel-heading" style="position: relative">
+                <h3 style="color: #0C1021;width: 50%;margin: 0" ><p>{{ article.title }}</p><span class="other" style="position:absolute;right: 0;bottom:0;font-size: 14px">{{ article.create_time }}</span></h3>
+
+            </div>
+            <div class="panel-body">
+                <p>
+                    <img src="{{ article.user.setting.head_img }}" alt="" class="img-circle" style="width: 30px;height:30px;display:  inline-block"/>
+                    <span class="user-name">{{ article.user.username }}: </span>
+                    <span class="other detail">{{ article.show_content }}</span>
+                </p>
+            </div>
+        </div>
+        </a>
+    {% endfor %}
+    </div>
+    <div id="is-bottom">
+        <p>已到达底部...</p>
+    </div>
+
 {% endblock %}

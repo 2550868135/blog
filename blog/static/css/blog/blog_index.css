@@ -1,3 +1,62 @@
-.gray{
+.gray {
     background: #cccccc;
+}
+
+.tags {
+    position: relative;
+}
+
+.count {
+    position: absolute;
+    right: 8px;
+}
+
+#myCarousel {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.article-show {
+    width: 50%;
+    margin: 0 auto;
+    margin-left: 28%
+}
+
+#Carousel-container {
+    margin: 0 auto;
+    margin-left: 28%
+}
+
+a:hover {
+    text-decoration: none;
+    color: #0C1021;
+}
+
+h3:hover {
+    color: #9c3328 !important;
+}
+
+.user-name {
+    color: #0f0f0f !important;
+}
+
+.other {
+    color: #9d9d9d;
+}
+
+.panel-heading h3 p, .panel-body p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.single-part {
+    margin-bottom: 5px;
+}
+
+#is-bottom{
+    display: none;
+    text-align: center;
+    color: #00aaaa;
+    font-size: larger;
 }

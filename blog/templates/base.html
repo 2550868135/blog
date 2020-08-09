@@ -13,12 +13,18 @@
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/base.js"></script>
     <script src="/static/js/sweetalert.min.js"></script>
+    <script src="https://cdn.staticfile.org/Plupload/2.1.1/moxie.js"></script>
+    <script src="https://cdn.staticfile.org/Plupload/2.1.1/plupload.dev.js"></script>
+    <script src="https://cdn.staticfile.org/qiniu-js-sdk/1.0.14-beta/qiniu.js"></script>
+    <script src="/static/js/xtalert.js"></script>
+    <script src="/static/js/zlqiniu.js"></script>
     {% block css %}{% endblock %}
     {% block js %}
     {% endblock %}
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
+    {% csrf_token %}
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -28,15 +34,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{% url 'blog' %}">ZYLH</a>
+      <a class="navbar-brand" href="{% url 'blog' 'all' %}">ZYLH</a>
     </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="click-li"><a href="{% url 'blog' %}">博客</a></li>
-                <li class="click-li"><a href="#">项目</a></li>
-                <li class="click-li"><a href="#">资料</a></li>
+                <li class="click-li"><a href="{% url 'blog' 'all' %}">博客</a></li>
+                <li class="click-li"><a href="{% url 'items' %}">项目</a></li>
+                <li class="click-li"><a href="{% url 'datas' %}">资料</a></li>
                 <li class="click-li"><a href="{% url 'dashboard' %}">后台管理</a></li>
             </ul>
             <form class="navbar-form navbar-left" style="margin-right: 5px;margin-left: 5px">
@@ -46,13 +52,16 @@
                 <button type="submit" class="btn btn-primary">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="create-btn" href="#" style="padding:8px 15px 8px 15px;"><button type="submit" class="btn btn-danger">创作</button></a></li>
+                <li><a class="create-btn" href="{% url 'create_article' %}" style="padding:8px 15px 8px 15px;"><button type="submit" class="btn btn-danger">创作</button></a></li>
                 {% if user %}
                 <li class="dropdown dropdown-li">
                     <a href="#" class="dropdown-toggle user-dropdown" style="padding:4px 15px 8px 15px;" data-toggle="dropdown" role="button" aria-haspopup="true"
                     aria-expanded="false"><img style="width:40px;height:40px;display: inline-block;" src="{{ user.setting.head_img|default:'http://qefd8neb2.bkt.clouddn.com/default.jpg' }}" alt="头像" class="img-circle img-responsive"><span class="caret" style=""></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'settings' %}"><span class="glyphicon glyphicon-user" style="margin-right: 10%"></span>个人中心</a></li>
+                        <li><a href="{% url 'my_article' %}"><span class="glyphicon glyphicon-pencil" style="margin-right: 10%"></span>我的文章</a></li>
+                        <li><a href="{% url 'my_item' %}"><span class="glyphicon glyphicon-list" style="margin-right: 10%"></span>我的项目</a></li>
+                        <li><a href="{% url 'my_data' %}"><span class="glyphicon glyphicon-book" style="margin-right: 10%"></span>我的资料</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out" style="margin-right: 10%"></span>退出登录</a></li>
                     </ul>

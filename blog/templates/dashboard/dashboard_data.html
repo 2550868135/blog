@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+    资料管理
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="/static/css/dashboard/dashboard_data.css">
+{% endblock %}
+{% block js %}
+    <script src="/static/js/dashboard/dashboard_data.js"></script>
+{% endblock %}
+
+{% block content %}
+    {% include 'dashboard/dashboard_base.html' %}
+    <div class="panel panel-default item-manage">
+        <div class="panel-heading">
+            <h1 class="panel-title" style="font-size: 25px;">资料管理</h1>
+        </div>
+        <div class="panel-body table-responsive">
+            <table class="table table-bordered table-responsive table-hover">
+                <tr>
+                    <th>资料编号</th>
+                    <th>资料描述</th>
+                    <th>资料下载地址</th>
+                    <th>操作</th>
+                </tr>
+                {% for data in datas %}
+                    <tr data-dataId="{{ data.data_id }}">
+                        <td>{{ data.data_id }}</td>
+                        <td class="data-describe-td">{{ data.describe }}</td>
+                        <td><a class="file_url" href="{{ data.file_url }}">{{ data.file_url }}</a></td>
+                        <td><a href="" class="btn btn-xs btn-danger delete-btn">删除</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

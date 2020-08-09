@@ -2,7 +2,7 @@ $(function (){
 
     //添加图片项目
    $(".add-pic").click(function (){
-       var picItem = `<div class=\"col-sm-6 col-md-4 count-image\"><div class=\"thumbnail\"><img class='insert-image' src='' alt='未选择图片' style=\"height:250px;\"><div class=\"caption\"><p style=\"position: relative;width: 100%\"><a href=\"javascript:void (0);\" class=\"btn btn-primary\" role=\"button\" style=\"margin: 0 3%\">选择图片</a><input type=\"file\" class=\"select-pic-btn\" style=\"position: absolute;opacity: 0;left: 0px;top: 0px;width: 50%;\" accept=\"image/*\" onchange=\"upload(this)\"><a href=\"javascript:void (0);\" class=\"btn btn-primary delete-btn\" role=\"button\" style=\"margin: 0 3%;position: absolute;right: 0;\" onclick=\"delPic(this)\">删除</a></p></div></div></div>`;
+       var picItem = `<div class=\"col-sm-6 col-md-4 count-image\"><div class=\"thumbnail\"><img class='insert-image' src='' alt='未选择图片' style=\"height:250px;\"><div class=\"caption\"><p style=\"position: relative;width: 100%\"><a href=\"\" class=\"btn btn-primary\" role=\"button\" style=\"margin: 0 3%\">选择图片</a><input type=\"file\" class=\"select-pic-btn\" style=\"position: absolute;opacity: 0;left: 0px;top: 0px;width: 50%;\" accept=\"image/*\" onchange=\"upload(this)\"><a href=\"\" class=\"btn btn-primary delete-btn\" role=\"button\" style=\"margin: 0 3%;position: absolute;right: 0;\" onclick=\"delPic(this)\">删除</a></p></div></div></div>`;
        $(".add-item").before(picItem);
    });
 
@@ -32,7 +32,8 @@ function upload(that){
                 success: function(data){
                     if(data.code == 0){
                         var image = data.image;
-                        $(".insert-image:last").attr('src',image);
+                        // $(".insert-image:last").attr('src',image);
+                        window.location.reload();
                     }
                     else{
                         swal({
@@ -54,7 +55,8 @@ function upload(that){
      }
 
 function delPic(that) {
-    var index = $(".delete-btn").index(that)+1;
+    var index = $(that).attr('data-index');
+    // var index = $(".delete-btn").index(that)+1;
     var url = $(".pic-manage").attr("data-remove");
     $.ajax({
         url:url,

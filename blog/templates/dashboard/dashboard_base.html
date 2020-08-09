@@ -1,12 +1,12 @@
 
-    <script src="/static/js/dashboard/dashboard_base.js"></script>
-    <div class="list-group col-sm-2 col-sm-offset-1 hidden-xs nav-side">
+    <script src="/static/js/dashboard/dashboard_base.js/"></script>
+    <div class="list-group col-sm-2 col-sm-offset-1 hidden-xs nav-side navbar-fixed-top">
         <a href="javascript:void(0);" class="list-group-item disabled">
             后台管理面板
         </a>
         <a href="{% url 'dashboard' %}" class="list-group-item avail-item active">用户管理</a>
-        <a href="#" class="list-group-item avail-item">文章管理</a>
-        <a href="#" class="list-group-item avail-item">项目管理</a>
-        <a href="#" class="list-group-item avail-item">资料管理</a>
+        <a href="{% url 'article_manage' %}" class="list-group-item avail-item">文章管理</a>
+        <a href="{% url 'item_manage' %}" class="list-group-item avail-item">项目管理</a>
+        <a href="{% url 'data_manage' %}" class="list-group-item avail-item">资料管理</a>
         <a href="{% url 'pic_setting' %}" class="list-group-item avail-item">轮播图片管理</a>
     </div>

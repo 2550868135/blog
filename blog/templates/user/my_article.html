@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}
+    我的文章
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="/static/css/user/my_article.css">
+{% endblock %}
+{% block js %}
+    <script src="/static/js/user/my_article.js"></script>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h1>我的文章</h1></div>
+            <div class="panel-body">
+                <div class="mylist">
+                    <div class="list-group article-list">
+                        {% if articles %}
+                            {% for article in articles %}
+                                <div class="list-group-item">
+                                    <a href="{% url 'detail' %}?id={{ article.article_id }}"><h3 class="list-group-item-heading article-title">{{ article.title }}</h3></a>
+                                    <div class="list-group-item-text article-info">
+                                        <span>类型:{{ article.tag.type }}</span>
+                                        <span class="create-time">{{ article.create_time }}</span>
+                                        <a href="{% url 'update_blog' %}?article_id={{ article.article_id }}" class="change-tag" id="update">编辑</a>
+                                        <a href="{% url 'delete_blog' %}?article_id={{ article.article_id }}" class="change-tag" id="delete">删除</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if error %}
+        <script>
+            swal({
+                        'title': errors,
+                        'button': '确定',
+                        'type': "error"
+                        },function () {
+                window.location.href = '/blog/myarticle/'
+            });
+        </script>
+    {% endif %}
+    {% if refresh == 1 %}
+        <script>
+            window.location.href = '/blog/myarticle/';
+        </script>
+    {% endif %}
+{% endblock %}

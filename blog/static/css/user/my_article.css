@@ -1,0 +1,37 @@
+.container{
+    position: relative;
+    margin:0 auto;
+    top: 8%;
+    width: 60%;
+}
+
+.article-list h3.article-title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.article-info{
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+.create-time{
+    position: absolute;
+    left: 100px;
+}
+
+#delete{
+    color: #00c4ff;
+    position: absolute;
+    right: 0px;
+    cursor: pointer;
+}
+#update{
+    color: #00c4ff;
+    position: absolute;
+    right: 35px;
+    cursor: pointer;
+}
+a:hover{
+    text-decoration: none!important;
+}
