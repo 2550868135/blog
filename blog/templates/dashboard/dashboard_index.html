@@ -28,7 +28,7 @@
                     <th>操作</th>
                 </tr>
                 {% for user in users %}
-                    <tr>
+                    <tr data-userId="{{ user.id }}">
                         <td>{{ user.username }}</td>
                         <td>{{ user.setting.nick_name }}</td>
                         <td>{{ user.setting.email }}</td>

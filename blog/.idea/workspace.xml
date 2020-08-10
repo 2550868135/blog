@@ -3,6 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="0bb55aa4-127c-4e3c-88bb-20ad4d097e5e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.qiniu_pythonsdk_hostscache.json" beforeDir="false" afterPath="$PROJECT_DIR$/.qiniu_pythonsdk_hostscache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/view/blogs.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/blogs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/view/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/view/dashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirement.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/blog/items.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/blog/items.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/blog/article_edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/blog/article_edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/dashboard/dashboard_index.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/dashboard/dashboard_index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/blog/article_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blog/article_edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/blog/blog_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blog/blog_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/blog/items.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blog/items.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard/dashboard_article.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/dashboard_article.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard/dashboard_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/dashboard_index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +140,9 @@
       <workItem from="1596900595415" duration="2865000" />
       <workItem from="1596938836185" duration="3484000" />
       <workItem from="1596955734474" duration="10066000" />
-      <workItem from="1596965849752" duration="2685000" />
+      <workItem from="1596965849752" duration="2797000" />
+      <workItem from="1596988120638" duration="860000" />
+      <workItem from="1597041091972" duration="4176000" />
     </task>
     <servers />
   </component>
@@ -147,18 +162,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="372" y="2" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1596536401403" />
-    <state x="558" y="249" key="FileChooserDialogImpl" timestamp="1596875559759">
+    <state x="558" y="249" key="FileChooserDialogImpl" timestamp="1596968648772">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="558" y="249" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1596875559759" />
+    <state x="558" y="249" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1596968648772" />
     <state x="270" y="54" key="SettingsEditor" timestamp="1596352250498">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1596352250498" />
-    <state x="290" y="142" key="Vcs.Push.Dialog.v2" timestamp="1596967073163">
+    <state x="290" y="142" key="Vcs.Push.Dialog.v2" timestamp="1597041131507">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="290" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1596967073163" />
+    <state x="290" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1597041131507" />
     <state x="449" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1596965864422">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -175,9 +190,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="578" y="253" key="git4idea.ui.GitTagDialog/0.0.1536.824@0.0.1536.824" timestamp="1596967173184" />
-    <state x="431" y="146" width="672" height="678" key="search.everywhere.popup" timestamp="1596939500073">
+    <state x="431" y="146" width="672" height="678" key="search.everywhere.popup" timestamp="1597042757032">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="146" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1596939500073" />
+    <state x="431" y="146" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1597042757032" />
   </component>
 </project>

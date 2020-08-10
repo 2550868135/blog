@@ -21,7 +21,7 @@
                                     <a href="{% url 'detail' %}?id={{ article.article_id }}"><h3 class="list-group-item-heading article-title">{{ article.title }}</h3></a>
                                     <div class="list-group-item-text article-info">
                                         <span>类型:{{ article.tag.type }}</span>
-                                        <span class="author">作者:{{ user.username }}</span>
+                                        <span class="author">作者:{{ article.user.username }}</span>
                                         <span class="create-time">{{ article.create_time }}</span>
                                         <span class="status">
                                             状态:{% if article.status %}公开{% else %}隐藏{% endif %}
@@ -44,7 +44,7 @@
     {% if error %}
         <script>
             swal({
-                        'title': errors,
+                        'title': '删除失败',
                         'button': '确定',
                         'type': "error"
                         },function () {

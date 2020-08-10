@@ -9,6 +9,14 @@ $(function (){
        var url = $(".layui-form").attr('data-url');
        var csrfToken = $("input[name='csrfmiddlewaretoken']").val();
 
+       if(!title || !tag){
+           swal({
+                        'title': '标题或内容不能为空!',
+                        'button': '确定',
+                        'type': "error"
+                        });
+           return 1;
+       }
 
        $.ajax({
            url:url,

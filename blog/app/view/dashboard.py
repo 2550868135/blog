@@ -25,9 +25,17 @@ class ChangeStatus(View):
     @is_super
     def get(self,request):
         try:
-            user = request.user
-            user.is_active = not user.is_active
-            user.save()
+            user_id = int(request.GET.get('user_id'))
+            if user_id:
+                user = User.objects.filter(id=user_id)
+                if user:
+                    user = user[0]
+                    user.is_active = not user.is_active
+                    user.save()
+                else:
+                    return JsonResponse({'code': 1, 'message': '修改失败!'})
+            else:
+                return JsonResponse({'code': 1, 'message': '修改失败!'})
             return JsonResponse({'code': 0})
         except :
             return JsonResponse({'code': 1,'message':'修改失败!'})
@@ -124,7 +132,7 @@ class DeleteDashboardArticle(View):
         data = {}
         if article_id:
             data['refresh'] = 1
-            article = Article.objects.filter(user=user, article_id=article_id)
+            article = Article.objects.filter(article_id=article_id)
             if article:
                 article.delete()
             else:

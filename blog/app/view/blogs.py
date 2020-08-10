@@ -30,7 +30,6 @@ class BlogView(View):
                 tag = tag[0]
                 total = Article.objects.filter(status=1, tag_id=tag.id).all().count()
                 articles = Article.objects.filter(status=1,tag_id=tag.id).all()
-                print(articles)
             else:
                 total = Article.objects.all().count()
                 articles = Article.objects.filter(status=1).all()
@@ -43,7 +42,7 @@ class BlogView(View):
         page = request.GET.get('page', '')
         if not page:
             page = 1
-            articles = articles[(page-1):page*page_size]
+            articles = articles[(page-1)*page_size:page*page_size]
             data = {'user': user, 'pics': pics, 'params': params, 'articles': articles, 'all_tags': all_tags,'total_page':total_page,'current_tag':name}
             return render(request, self.TEMPLATE, data)
         else:
@@ -101,7 +100,7 @@ class LoginView(View):
         if next:
             return redirect(next)
         else:
-            return redirect(reverse('blog',kwargs={'tag':''}))
+            return redirect(reverse('blog',kwargs={'name':'all'}))
 
 
 class LogoutView(View):
@@ -125,14 +124,18 @@ class CreateArticle(View):
         title = request.POST.get('title')
         real_content = request.POST.get('real_content')
         show_content = request.POST.get('show_content')
-        user = User.objects.filter(id=user_id)
-        tag = Tag.objects.filter(type=tag)
-        if user and tag:
-            article = Article(article_id=shortuuid.uuid(),title=title,real_content=real_content,show_content=show_content,user=user[0],tag=tag[0])
-            article.save()
-            return JsonResponse({'code':0,'message':'发表成功'})
+        if user_id or tag or title or real_content or show_content:
+
+            user = User.objects.filter(id=user_id)
+            tag = Tag.objects.filter(type=tag)
+            if user and tag:
+                article = Article(article_id=shortuuid.uuid(),title=title,real_content=real_content,show_content=show_content,user=user[0],tag=tag[0])
+                article.save()
+                return JsonResponse({'code':0,'message':'发表成功'})
+            else:
+                return JsonResponse({'code':1,'message':'发表失败'})
         else:
-            return JsonResponse({'code':1,'message':'发表失败'})
+            return JsonResponse({'code': 1, 'message': '发表失败'})
 
 
 class AritcleDetail(View):
@@ -143,7 +146,7 @@ class AritcleDetail(View):
         article_id = request.GET.get('id')
         article = Article.objects.filter(article_id=article_id)
         user = request.user
-        comments = Comment.objects.filter(article_id=article[0].id,author_id=user.id)
+        comments = Comment.objects.filter(article_id=article[0].id)
         if article:
             data = {'article':article[0],'comments':comments}
             return render(request,self.TEMPLATE,data)
