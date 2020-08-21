@@ -32,7 +32,7 @@ $(function (){
                         'type': "success",
                         'timer':1000
                     },function(){
-                        window.location.href = '/blog/';
+                        window.location.href = '/blog/myarticle';
                     });
 
                 }
