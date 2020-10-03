@@ -1,0 +1,7 @@
+<div id="{{ conv_user.username }}" class="chat-item {% if conv_user.username == activeUser %}choosed{% endif %}">
+    <a class="message-user-img" href="{% url 'single_message' conv_user.username %}" style="text-decoration: none">
+        <img class="user-img" src="{% if conv_user.setting %}{{ conv_user.setting.head_img }}{% else %}https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=38616266,2952961838&fm=26&gp=0.jpg{% endif %}">
+        <span class="user-name">{% if conv_user.setting %}{{ conv_user.setting.nick_name }}{% else %}{{ conv_user.username }}{% endif %}</span>
+    </a>
+    <span class="unread {% if conv_user in unread_user_list and conv_user.username != activeUser %}{% else %}come-unread{% endif %}" ></span>
+</div>

@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
+{% load staticfiles compress %}
 {% block title %}
     我的资料
 {% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="/static/css/user/my_data.css">
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/user/my_data.css' %}">
+    {% endcompress %}
 {% endblock %}
 {% block js %}
-    <script src="/static/js/xtalert.js"></script>
-    <script src="/static/js/user/my_data.js"></script>
+    {% compress js %}
+    <script src="{% static 'js/xtalert.js' %}"></script>
+    <script src="{% static 'js/user/my_data.js' %}"></script>
+    {% endcompress %}
     <script>
         window.onload = function () {
             zlqiniu.setUp({

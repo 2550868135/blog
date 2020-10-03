@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
+{% load staticfiles compress %}
 {% block title %}
     文章管理
 {% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="/static/css/dashboard/dashboard_article.css">
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/dashboard/dashboard_article.css' %}">
+    {% endcompress %}
 {% endblock %}
 {% block js %}
 {% endblock %}

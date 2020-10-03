@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
+{% load staticfiles compress %}
 {% block title %}
     资料
 {% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="/static/css/blog/datas.css">
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/blog/datas.css' %}">
+    {% endcompress %}
 {% endblock %}
 {% block js %}
-    <script src="/static/js/blog/datas.js"></script>
+    {% compress js %}
+    <script src="{% static 'js/blog/datas.js' %}"></script>
+    {% endcompress %}
     <script>
         window.onload = function () {
             zlqiniu.setUp({
-                'domain': 'http://qeopwdtd2.bkt.clouddn.com/',     //域名
+                'domain': 'http://qg8ptm4y0.hd-bkt.clouddn.com/',     //域名
                 'browse_btn': 'upload-btn',                //上传文件摁纽id
                 'uptoken_url': '/blog/uptoken/',                //uptoken的url,即定义返回uptoken的视图
                 'success': function (up, file, info) {       //成功后的回调函数
@@ -43,7 +48,11 @@
             <div class="item-body">
             {% for data in datas %}
                 <div class="panel panel-warning single-item">
-                        <div class="panel-heading item-head"><span class="head-img"><img src="{{ data.user.setting.head_img }}" alt=""></span><span class="username">{{ data.user.username }}</span><a href="{{ data.file_url }}" class="btn btn-info download-item" target="_blank">下载资料</a></div>
+                        <div class="panel-heading item-head">
+                            <span class="head-img"><img src="{% if data.user.setting %}{{ data.user.setting.head_img }}{% else %}https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=38616266,2952961838&fm=26&gp=0.jpg{% endif %}" alt=""></span>
+                            <span class="username"><a href="{% url 'single_message' data.user.username %}" class="user-info-a">{{ data.user.setting.nick_name|default:data.user.username }}</a></span>
+                            <a href="{{ data.file_url }}" class="btn btn-info download-item" target="_blank">下载资料</a>
+                        </div>
                         <div class="panel-body item-introduce">
                             <p style="font-size: larger;margin-bottom: 5px">描述:</p>
                             <p>{{ data.describe }}</p>

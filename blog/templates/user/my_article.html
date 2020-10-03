@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
+{% load staticfiles compress %}
 {% block title %}
     我的文章
 {% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="/static/css/user/my_article.css">
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/user/my_article.css' %}">
+    {% endcompress %}
 {% endblock %}
 {% block js %}
-    <script src="/static/js/user/my_article.js"></script>
+    {% compress js %}
+    <script src="{% static 'js/user/my_article.js' %}"></script>
+    {% endcompress %}
 {% endblock %}
 {% block content %}
     <div class="container">

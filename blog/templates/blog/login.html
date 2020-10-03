@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load staticfiles compress cache %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -9,14 +10,16 @@
     <meta name="author" content="">
 
     <title>登录</title>
-
+    {% compress css %}
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/static/css/blog/signin.css" rel="stylesheet">
+    <link href="{% static 'css/blog/signin.css' %}" rel="stylesheet">
+    {% endcompress %}
 </head>
 <body>
+{% cache 3600 sidebar %}
 <form class="form-signin" method="post" action="{% url 'login' %}">
     {% csrf_token %}
     <h2 class="form-signin-heading">请登录</h2>
@@ -33,5 +36,6 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
     <input type="hidden" name="next" value="{{ next }}">
 </form>
+{% endcache %}
 </body>
 </html>

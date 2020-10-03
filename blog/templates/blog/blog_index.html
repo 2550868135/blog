@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
+{% load staticfiles compress %}
 {% block title %}
     博客
 {% endblock %}
 {% block css %}
-    {#    <link rel="stylesheet" href="/static/css/layui.css" media="all">#}
-    {#    <link rel="stylesheet" href="/static/css/layer.css" media="all">#}
-    <link rel="stylesheet" href="/static/css/blog/blog_index.css/">
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/blog/blog_index.css' %}">
+    {% endcompress %}
 {% endblock %}
 {% block js %}
-    <script src="/static/js/blog/blog_index.js/?v=2"></script>
+    {% compress js %}
+    <script src="{% static 'js/blog/blog_index.js' %}"></script>
+    {% endcompress %}
 {% endblock %}
 {% block content %}
     <ul class="nav nav-pills nav-stacked navbar-fixed-top col-sm-2 col-sm-offset-1 hidden-xs"
@@ -38,7 +41,7 @@
                 </li>
         {% endfor %}
     </ul>
-    <div id="Carousel-container" style="position: relative;width:50%; height: 40%;display: inline-block;margin-top: 55px">
+    <div id="Carousel-container" style="position: relative;width:766px; height: 300px;display: inline-block;margin-top: 55px">
     <div id="myCarousel" data-ride="carousel" data-interval="3000" class="carousel slide" style="height: 100%;width: 100%">
         <!-- 轮播（Carousel）指标 -->
         <ol class="carousel-indicators">
@@ -78,21 +81,7 @@
     </div>
     <div class="article-show" data-page="1" data-total-page="{{ total_page }}">
     {% for article in articles %}
-        <a href="{% url 'detail' %}?id={{ article.article_id }}">
-        <div class="panel panel-info single-part">
-            <div class="panel-heading" style="position: relative">
-                <h3 style="color: #0C1021;width: 50%;margin: 0" ><p>{{ article.title }}</p><span class="other" style="position:absolute;right: 0;bottom:0;font-size: 14px">{{ article.create_time }}</span></h3>
-
-            </div>
-            <div class="panel-body">
-                <p>
-                    <img src="{{ article.user.setting.head_img }}" alt="" class="img-circle" style="width: 30px;height:30px;display:  inline-block"/>
-                    <span class="user-name">{{ article.user.username }}: </span>
-                    <span class="other detail">{{ article.show_content }}</span>
-                </p>
-            </div>
-        </div>
-        </a>
+        {% include 'blog/single_article.html' with article=article %}
     {% endfor %}
     </div>
     <div id="is-bottom">

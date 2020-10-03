@@ -3,7 +3,7 @@ from django.urls import path
 from app.view.blogs import BlogView,LoginView,LogoutView,CreateArticle,AritcleDetail,Items,UploadToken,AddComment,Datas
 from app.view.user import SettingView,UpdateInfo,MyArticle,UpdateBlog,DeleteBlog,MyItem,DeleteItem,UpdateItem,MyData,DeleteData,UpdateData
 from app.view.dashboard import DashboardIndex,ChangeStatus,PicSetting,RemovePic,ArticleManage,ChangeBlogStatus,DeleteDashboardArticle,ItemManage,DeleteDashboardItem,DataManage,DeleteDashboardData
-
+from app.view.message import Message_list,Message_Single,PostMessage,mark_as_read
 urlpatterns = [
                 path('index/<str:name>/',BlogView.as_view(),name='blog'),
                 path('login/',LoginView.as_view(),name='login'),
@@ -36,4 +36,9 @@ urlpatterns = [
                 path('mydata/',MyData.as_view(),name='my_data'),
                 path('mydata/deletedata/',DeleteData.as_view(),name='delete_data'),
                 path('mydata/updatedata/',UpdateData.as_view(),name='update_data'),
+                path('message/',Message_list.as_view(),name='message_list'),
+                path('message/sendmessage/',PostMessage.as_view(),name='post_message'),
+                path('message/mark/',mark_as_read,name='mark_as_read'),
+                path('message/<str:username>/',Message_Single.as_view(),name='single_message'),
+
 ]

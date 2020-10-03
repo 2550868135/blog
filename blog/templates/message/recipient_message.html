@@ -1,0 +1,7 @@
+<div class="create-time">{{ message.create_time }}</div>
+<div class="recipient">
+    <img class="user-img" src="{% if user.setting %}{{ user.setting.head_img }}{% else %}https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=38616266,2952961838&fm=26&gp=0.jpg{% endif %}" style="float: left;">
+    <div class="recipient-content">
+        {{ message.content }}
+    </div>
+</div>

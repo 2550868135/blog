@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load staticfiles compress %}
+{% block title %}
+    私信
+{% endblock %}
+{% block css %}
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/message/message_list.css' %}"/>
+    {% endcompress %}
+{% endblock %}
+{% block js %}
+    {% compress js %}
+    <script src="{% static 'js/message/message.js' %}"></script>
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    <div class="container main">
+        <div class="row total-pane">
+            <div class="col-sm-3 left-part" >
+                <div class="top">
+                    <a id="user-info" href="javascript:void(0);">
+                        <img class="user-img" src="{% if user.setting %}{{ user.setting.head_img }}{% else %}https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=38616266,2952961838&fm=26&gp=0.jpg{% endif %}">
+                        <span class="user-name">{% if user.setting %}{{ user.setting.nick_name }}{% else %}{{ user.username }}{% endif %}</span>
+                    </a>
+                </div>
+                <div class="bottom">
+                    {% if first %}
+                        <div id="{{ choose.username }}" class="chat-item choosed" >
+                            <a class="message-user-img" href="{% url 'single_message' choose.username %}" style="text-decoration: none">
+                                <img class="user-img" src="{% if choose.setting %}{{ choose.setting.head_img }}{% else %}https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=38616266,2952961838&fm=26&gp=0.jpg{% endif %}">
+                                <span class="user-name">{% if choose.setting %}{{ choose.setting.nick_name }}{% else %}{{ choose.username }}{% endif %}</span>
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% for conv_user in conversation_user %}
+                        {% include 'message/chat-item.html' with conv_user=conv_user activeUser=activeUser %}
+                    {% endfor %}
+                    <div id="add-chat"></div>
+                </div>
+            </div>
+            <div class="col-sm-9 right-part">
+                {% if choose %}
+                    <div class="content-top">
+                        <span class="friend-name">{{ choose.setting.nickname }}</span>
+                    </div>
+                    <div class="content-main">
+                        {% for conversation in conversation_list %}
+                            {% if conversation.sender.username == user.username %}
+                                {% include 'message/sender_message.html' with user=conversation.sender message=conversation %}
+                            {% else %}
+                                {% include 'message/recipient_message.html' with user=conversation.sender message=conversation %}
+                            {% endif %}
+                        {% endfor %}
+                        <div id="send-message"></div>
+                    </div>
+                    <div class="content-bottom">
+                        <textarea name="content" id="edit" cols="30" rows="10"></textarea>
+                        <p class="tip">按下Enter发送内容</p>
+                    </div>
+                {% else %}
+                    <div class="non-choose">您还未选中或者发起聊天，快去跟好友聊一聊吧</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <script>
+        var currentUser = '{{ user.username }}';
+        var activeUser = '{{ activeUser }}';
+    </script>
+{% endblock %}

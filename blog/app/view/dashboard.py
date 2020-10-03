@@ -59,7 +59,6 @@ class PicSetting(View):
         if file:
             result = video_qiniu.put(file.name,file.read())
             if result:
-                print(result)
                 exists = Picture.objects.filter(index=index)
                 if not exists:
                     img = Picture.objects.create(index=index,image=result)

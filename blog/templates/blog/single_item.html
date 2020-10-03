@@ -1,0 +1,13 @@
+{% load highlight %}
+<div class="panel panel-success single-item item-d">
+    <div class="panel-heading item-head"><span class="title">{{ item.name }}</span><a
+            href="{{ item.file_url }}" class="btn btn-info download-item">下载项目</a></div>
+    <div class="panel-body item-introduce">
+        <p style="font-size: larger">项目描述:</p>
+        <p>{{ item.introduce }}</p>
+        <div class="footer">
+            <span class="author-name" style="display: block">作者: <a href="{% url 'single_message' item.user.username %}" class="user-info-a">{{ item.user.setting.nick_name|default:item.user.username }}</a></span>
+            <span class="date">{{ item.create_time }}</span>
+        </div>
+    </div>
+</div>

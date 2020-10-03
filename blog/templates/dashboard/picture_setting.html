@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
+{% load staticfiles compress %}
 {% block title %}
     轮播图片管理
 {% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="/static/css/dashboard/picture_setting.css/?v=3">
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/dashboard/picture_setting.css' %}">
+    {% endcompress %}
 {% endblock %}
 {% block js %}
-    <script src="/static/js/dashboard/picture_setting.js/?v=1"></script>
+    {% compress js %}
+    <script src="{% static 'js/dashboard/picture_setting.js' %}"></script>
+    {% endcompress %}
 {% endblock %}
 {% block content %}
     {% csrf_token %}

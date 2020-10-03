@@ -1,0 +1,3 @@
+{{ object.title }}
+{{ object.show_content }}
+{{ object.tag }}

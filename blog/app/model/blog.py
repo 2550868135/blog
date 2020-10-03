@@ -17,9 +17,11 @@ def create_id(self):
 class Tag(models.Model):
     type = models.CharField(max_length=50,null=False,blank=False)
     name = models.CharField(max_length=50,default='')
+
     @classmethod
     def set_tag(cls,type,name):
         tag = Tag.objects.create(type=type,name=name)
+
 class Article(models.Model):
     article_id = models.CharField(max_length=50,unique=True,null=False,db_index=True)
     title = models.CharField(max_length=200,null=False,blank=False)
@@ -29,10 +31,12 @@ class Article(models.Model):
     tag = models.ForeignKey(Tag,related_name='articles',blank=True,null=True,on_delete=models.SET_NULL)
     user = models.ForeignKey(User,related_name='articles',blank=True,null=True,on_delete=models.SET_NULL)
     last_update = models.DateTimeField(auto_now=True)
-    create_time = models.DateTimeField(auto_now_add=True)
+    create_time = models.DateTimeField(auto_now_add=True,db_index=True)
 
     class Meta:
         index_together = ['article_id','title','tag']
+        ordering = ("-create_time",)
+
 
 
 
@@ -44,7 +48,10 @@ class Item(models.Model):
     status = models.BooleanField(default=1)
     user = models.ForeignKey(User, related_name='items', blank=True, null=True, on_delete=models.SET_NULL)
     last_update = models.DateTimeField(auto_now=True)
-    create_time = models.DateTimeField(auto_now_add=True)
+    create_time = models.DateTimeField(auto_now_add=True,db_index=True)
+
+    class Meta:
+        ordering = ("-create_time",)
 
 class Comment(models.Model):
     content = models.CharField(max_length=500,default='')
@@ -52,10 +59,14 @@ class Comment(models.Model):
     author = models.ForeignKey(User,related_name='comments',blank=True, null=True, on_delete=models.SET_NULL)
     create_time = models.DateTimeField(auto_now_add=True)
 
+
 class Data(models.Model):
     data_id = models.CharField(max_length=50,unique=True,null=False,db_index=True)
     describe = models.TextField(default='')
     file_url = models.CharField(max_length=500, default='')
     user = models.ForeignKey(User, related_name='datas', blank=True, null=True, on_delete=models.SET_NULL)
     last_update = models.DateTimeField(auto_now=True)
-    create_time = models.DateTimeField(auto_now_add=True)
+    create_time = models.DateTimeField(auto_now_add=True,db_index=True)
+
+    class Meta:
+        ordering = ("-create_time",)

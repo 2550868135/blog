@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load highlight staticfiles compress cache %}
+{% block title %}
+    搜索结果
+{% endblock %}
+{% block css %}
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/search/search.css' %}">
+    {% endcompress %}
+{% endblock %}
+{% block js %}
+    {% compress js %}
+    <script src="{% static 'js/search/search.js' %}"></script>
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <div class="tab-container input-lg col-sm-8 col-sm-offset-2">
+
+        <!-- Nav tabs -->
+        {% cache 3600 sidebar %}
+        <div class="nav-container">
+            <ul class="nav nav-tabs tab-nav" role="tablist">
+                <li  role="presentation" class="change-tab active"><a data-class="article" class="tab-a" href="#article" aria-controls="article"
+                                                          role="tab" data-toggle="tab">文章</a></li>
+                <li role="presentation" class="change-tab"><a href="#item" data-class="item" class="tab-a" aria-controls="item" role="tab" data-toggle="tab">项目</a>
+                </li>
+                <li role="presentation" class="change-tab"><a href="#data" data-class="data" class="tab-a" aria-controls="data" role="tab" data-toggle="tab">资料</a>
+                </li>
+            </ul>
+        </div>
+        {% endcache %}
+
+        <!-- Tab panes -->
+        <div class="content-container block">
+            <div class="tab-content block" >
+                <!-- 文章搜索页面 -->
+                <div role="tabpanel" class="tab-pane active" id="article">
+                        {% for article in page.object_list %}
+                            {% if article.model_name == 'article' %}
+                                {% include 'blog/single_article.html' with article=article.object query=query is_search=True %}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="article-no-post" style="display: none">没有搜索到你想要的结果！</div>
+                </div>
+                <!-- 项目搜索页面 -->
+                <div role="tabpanel" class="tab-pane" id="item">
+                        {% for article in page.object_list %}
+                            {% if article.model_name == 'item' %}
+                                {% include 'blog/single_item.html' with item=article.object query=query %}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="item-no-post" style="display: none">没有搜索到你想要的结果！</div>
+                </div>
+                <!-- 资料搜索页面 -->
+                <div role="tabpanel" class="tab-pane" id="data">
+                        {% for article in page.object_list %}
+                            {% if article.model_name == 'data' %}
+                                {% include 'blog/single_data.html' with data=article.object query=query %}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="data-no-post" style="display: none">没有搜索到你想要的结果！</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

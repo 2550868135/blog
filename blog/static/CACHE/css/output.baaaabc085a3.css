@@ -1,0 +1,21 @@
+.nav-side{
+    margin-left: 12%;
+    text-align: center;
+    margin-top: 55px;
+}
+
+.auth-manage{
+    position: relative;
+    margin-left: 30%;
+    margin-top:55px;
+    width: 60%;
+}
+
+.panel-body{
+    padding: 0;
+}
+
+.check-form div{
+    padding: 0px!important;
+    margin: 14% 0!important;
+}

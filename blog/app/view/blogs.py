@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from app.model.blog import Article,Tag,TagType,Item,Comment,Data
+from app.model.messager import Message
 import qiniu
 from app.utils.get_strftime import get_strftime
 import shortuuid
@@ -55,7 +56,7 @@ class BlogView(View):
                     'title':article.title,
                     'create_time':create_time,
                     'head_img':article.user.setting.head_img,
-                    'username':article.user.username,
+                    'username':article.user.setting.nick_name if article.user.setting.nick_name else article.user.username,
                     'show_content':article.show_content[:100]
                 }
             return JsonResponse({'data':data})
@@ -73,6 +74,8 @@ class LoginView(View):
     def post(self,request):
         username = request.POST.get('username')
         password = request.POST.get('password')
+        remember = request.POST.get('remember')
+
         next = request.POST.get('next')
 
         data = {}
@@ -81,13 +84,13 @@ class LoginView(View):
             return render(request,self.TEMPLATE,data)
 
         user = User.objects.filter(username=username)
-        if user[0].is_active == 0:
-            data['error'] = '用户已被禁用,请联系管理员!'
+        if not user:
+            data['error'] = '用户名错误!'
             return render(request, self.TEMPLATE, data)
 
         user = User.objects.filter(username=username)
-        if not user:
-            data['error'] = '用户名错误!'
+        if user[0].is_active == 0:
+            data['error'] = '用户已被禁用,请联系管理员!'
             return render(request, self.TEMPLATE, data)
 
         user = authenticate(username=username,password=password)
@@ -97,6 +100,10 @@ class LoginView(View):
 
         #登录
         login(request,user)
+        if remember:
+            request.session.set_expiry(60*60*24*14)
+        else:
+            request.session.set_expiry(0)
         if next:
             return redirect(next)
         else:
@@ -148,7 +155,7 @@ class AritcleDetail(View):
         user = request.user
         comments = Comment.objects.filter(article_id=article[0].id)
         if article:
-            data = {'article':article[0],'comments':comments}
+            data = {'user':user,'article':article[0],'comments':comments}
             return render(request,self.TEMPLATE,data)
         else:
             return redirect(redirect('blog',kwargs={'tag':''}))
@@ -180,7 +187,7 @@ def UploadToken(request):
     access_key = '2zdV4opbmFZaDcTF0yUfW25kymJrpWNpx3MtkUwM'
     secret_key = '2fw3FgmHRaoYdSyUca8A3clQKiowHDiL4FsusSEC'
     q = qiniu.Auth(access_key, secret_key)
-    bucket = 'items-dock'
+    bucket = 'item-list'
     token = q.upload_token(bucket)
     return JsonResponse({'uptoken':token})
 

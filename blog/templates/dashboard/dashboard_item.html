@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
+{% load staticfiles compress %}
 {% block title %}
     项目管理
 {% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="/static/css/dashboard/dashboard_item.css">
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/dashboard/dashboard_item.css' %}">
+    {% endcompress %}
 {% endblock %}
 {% block js %}
-    <script src="/static/js/dashboard/dashboard_item.js"></script>
+    {% compress js %}
+    <script src="{% static 'js/dashboard/dashboard_item.js' %}"></script>
+    {% endcompress %}
 {% endblock %}
 
 {% block content %}

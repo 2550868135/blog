@@ -1,0 +1,16 @@
+<div class="panel panel-warning single-item data-d">
+    <div class="panel-heading item-head-data"><span class="head-img"><img src="
+            {% if data.user.setting %}{{ data.user.setting.head_img }}{% else %}https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=38616266,2952961838&fm=26&gp=0.jpg{% endif %}"
+                                                                     alt=""></span>
+        <a href="{% url 'single_message' item.user.username %}" class="user-info-a"><span
+            class="username">{{ data.user.setting.nick_name|default:data.user.username }}</span></a><a href="{{ data.file_url }}"
+                                                               class="btn btn-info download-item"
+                                                               target="_blank">下载资料</a></div>
+    <div class="panel-body item-introduce">
+        <p style="font-size: larger;margin-bottom: 5px">描述:</p>
+        <p>{{ data.describe }}</p>
+        <div class="footer-data">
+            {{ data.create_time }}
+        </div>
+    </div>
+</div>

@@ -24,7 +24,7 @@ class Qiniu(object):
         else:
             return False
 
-BUCKET_NAME = 'setting-img'
-BASE_URL = 'http://qefd8neb2.bkt.clouddn.com'
+BUCKET_NAME = 'navcator'
+BASE_URL = 'http://qg8pbwdiv.hd-bkt.clouddn.com'
 video_qiniu = Qiniu(bucket_name=BUCKET_NAME,
                     base_url=BASE_URL)

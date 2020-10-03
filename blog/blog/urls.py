@@ -19,5 +19,6 @@ from app import urls as app_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/',include(app_urls))
+    path('blog/',include(app_urls)),
+    path('search/', include('haystack.urls')),
 ]

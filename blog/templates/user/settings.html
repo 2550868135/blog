@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
+{% load staticfiles compress %}
 {% block title %}
     个人设置
 {% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="/static/css/user/settings.css">
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/user/settings.css' %}">
+    {% endcompress %}
 {% endblock %}
 {% block js %}
-    <script src="/static/js/user/settings.js/?v=3"></script>
-    <script src="/static/js/layui.all.js"></script>
+    {% compress js %}
+    <script src="{% static 'js/user/settings.js' %}"></script>
+    <script src="{% static 'js/layui.all.js' %}"></script>
+    {% endcompress %}
 {% endblock %}
 {% block content %}
     <div class="panel panel-default auth-data">

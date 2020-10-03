@@ -1,0 +1,21 @@
+{% load highlight %}
+<a href="{% url 'detail' %}?id={{ article.article_id }}">
+    <div class="panel panel-info single-part">
+        <div class="panel-heading" style="position: relative">
+            <h3 style="color: #0C1021;width: 50%;margin: 0"><p>{{ article.title }}</p><span
+                    class="other"
+                    style="position:absolute;right: 0;bottom:0;font-size: 14px">{{ article.create_time }}</span>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <p>
+                <img src="
+                        {% if article.user.setting %}{{ article.user.setting.head_img }}{% else %}https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=38616266,2952961838&fm=26&gp=0.jpg{% endif %}"
+                     alt="" class="img-circle"
+                     style="width: 30px;height:30px;display:  inline-block"/>
+                <span class="user-name">{{ article.user.setting.nick_name|default:article.user.username }}: </span>
+                <span class="other detail">{{ article.show_content }}</span>
+            </p>
+        </div>
+    </div>
+</a>

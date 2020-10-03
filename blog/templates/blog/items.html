@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
+{% load staticfiles compress %}
 {% block title %}
     项目
 {% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="/static/css/blog/items.css">
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/blog/items.css' %}">
+    {% endcompress %}
 {% endblock %}
 {% block js %}
-    <script src="/static/js/blog/items.js"></script>
+    {% compress js %}
+    <script src="{% static 'js/blog/items.js' %}"></script>
+    {% endcompress %}
     <script>
         window.onload = function () {
             zlqiniu.setUp({
-                'domain': 'http://qeopwdtd2.bkt.clouddn.com/',     //域名
+                'domain': 'http://qg8ptm4y0.hd-bkt.clouddn.com/',     //域名
                 'browse_btn': 'upload-btn',                //上传文件摁纽id
                 'uptoken_url': '/blog/uptoken/',                //uptoken的url,即定义返回uptoken的视图
                 'success': function (up, file, info) {       //成功后的回调函数
@@ -49,7 +54,7 @@
                             <p style="font-size: larger">项目描述:</p>
                             <p>{{ item.introduce }}</p>
                             <div class="footer">
-                                <span class="author-name" style="display: block">作者: {{ item.user.username }}</span>
+                                <span class="author-name" style="display: block">作者: <a href="{% url 'single_message' item.user.username %}" class="user-info-a">{{ item.user.setting.nick_name|default:item.user.username }}</a></span>
                                 <span class="date">{{ item.create_time }}</span>
                             </div>
                         </div>
